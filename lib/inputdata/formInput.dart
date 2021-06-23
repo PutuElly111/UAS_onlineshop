@@ -18,8 +18,7 @@ class _FormInputState extends State<FormInput> {
   //membuat method POST untuk Upload data ke API
   Future saveUpload() async {
     // karena ingin menambahkan data/POST maka perlu tambahan body karena di body API kita akan menambahkan data object yang ditulis harus sama dengan yang ada di API
-    final response =
-        await http.post(Uri.parse("http://127.0.0.1/api/inputs"), body: {
+    final response = await http.post(Uri.parse("http://127.0.0.1/api/inputs"), body: {
       "warna": warnaController.text,
       "ukuran": ukuranController.text,
       "jumlah": jumlahController.text,
@@ -47,8 +46,7 @@ class _FormInputState extends State<FormInput> {
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                       labelText: "Warna",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5))),
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(5))),
                 ),
               ),
               Padding(
@@ -58,8 +56,7 @@ class _FormInputState extends State<FormInput> {
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                       labelText: "Ukuran",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5))),
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(5))),
                 ),
               ),
               Padding(
@@ -69,8 +66,7 @@ class _FormInputState extends State<FormInput> {
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                       labelText: "Jumlah",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5))),
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(5))),
                 ),
               ),
               Padding(
@@ -90,9 +86,7 @@ class _FormInputState extends State<FormInput> {
                           if (_formkey.currentState.validate()) {
                             saveUpload().then((value) {
                               Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => DataTampil()));
+                                  context, MaterialPageRoute(builder: (context) => DataTampil()));
                             });
                           }
                         },

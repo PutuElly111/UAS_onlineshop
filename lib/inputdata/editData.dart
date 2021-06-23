@@ -9,7 +9,7 @@ class EditData extends StatelessWidget {
   final Map input;
   EditData({@required this.input});
   final _formkey = GlobalKey<FormState>();
-  TextEditingController namaController = TextEditingController();
+
   TextEditingController warnaController = TextEditingController();
   TextEditingController ukuranController = TextEditingController();
   TextEditingController jumlahController = TextEditingController();
@@ -18,14 +18,12 @@ class EditData extends StatelessWidget {
   Future updateKonten() async {
     // karena ingin mengedit data maka menggunakan method PUT maka perlu tambahan body karena di body API kita akan menambahkan data object yang sudah ditulis harus sama dengan yang ada di API
     // dan tambahan pada url yaitu upload ["id"] fungsinya untuk mengetahui id data ke berapa yang diedit pada API
-    final response = await http.put(
-        Uri.parse("http://127.0.0.1/api/inputs/" + input['id'].toString()),
-        body: {
-          "nama_sepatu": namaController.text,
-          "warna": warnaController.text,
-          "ukuran": ukuranController.text,
-          "jumlah": jumlahController.text,
-        });
+    final response =
+        await http.put(Uri.parse("http://127.0.0.1/api/inputs/" + input['id'].toString()), body: {
+      "warna": warnaController.text,
+      "ukuran": ukuranController.text,
+      "jumlah": jumlahController.text,
+    });
     return jsonDecode(response.body);
   }
 
@@ -45,23 +43,11 @@ class EditData extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(top: 20, bottom: 20),
                 child: TextField(
-                  controller: namaController..text = input['nama_sepatu'],
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration(
-                      labelText: "Nama Sepatu",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5))),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 20, bottom: 20),
-                child: TextField(
                   controller: warnaController..text = input['warna'],
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                       labelText: "Warna",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5))),
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(5))),
                 ),
               ),
               Padding(
@@ -71,8 +57,7 @@ class EditData extends StatelessWidget {
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                       labelText: "Ukuran",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5))),
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(5))),
                 ),
               ),
               Padding(
@@ -82,8 +67,7 @@ class EditData extends StatelessWidget {
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                       labelText: "Jumlah",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5))),
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(5))),
                 ),
               ),
               Padding(
@@ -103,9 +87,7 @@ class EditData extends StatelessWidget {
                           if (_formkey.currentState.validate()) {
                             updateKonten().then((value) {
                               Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => DataTampil()));
+                                  context, MaterialPageRoute(builder: (context) => DataTampil()));
                             });
                           }
                         },

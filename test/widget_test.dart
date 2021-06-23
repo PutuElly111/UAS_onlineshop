@@ -7,7 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:onlineshoe/login/loginpages.dart';
+import 'package:onlineshoe/login/auth.dart';
 
 import 'package:onlineshoe/main.dart';
 
